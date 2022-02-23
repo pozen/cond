@@ -1,0 +1,2 @@
+# cond
+condition check script
