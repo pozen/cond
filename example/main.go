@@ -1,21 +1,5 @@
-- what's this?  
-A lightweight configurable condition rule check lib. Support simple condtion query syntax , just like mongo json query.
-eg:
+package main
 
-```
-{
-	"a": "123",
-	"a.b": {"$gt":0, "$lt":10},
-	"$or": [{"a":1},{"c":{"$ne": "123"}}]
-}
-
-```
-
-You can use it as a rule engine for condition check.  
-
-- How to use?  
-
-```
 import (
 	"fmt"
 
@@ -65,5 +49,3 @@ func main() {
 	check_result = s.SetCond(c2).Exec(&val_to_check2)
 	fmt.Printf("regex check_result is: %v\n", check_result)
 }
-
-```
