@@ -1,4 +1,5 @@
-- *****what's this?**  
+***** what's this? **
+  
 A lightweight configurable condition rule check lib. Support simple condtion query syntax , just like mongo json query.
 eg:
 
@@ -13,8 +14,8 @@ eg:
 
 You can use it as a rule engine for condition check, normally the Cond is a config data from configure file or DB.  
 
-- **How to use?**  
-
+** How to use? **  
+  
 ```
 import (
 	"fmt"
