@@ -6,12 +6,30 @@ eg:
 {
 	"a": "123",
 	"a.b": {"$gt":0, "$lt":10},
-	"$or": [{"a":1},{"c":{"$ne": "123"}}]
+	"$or": [{"a":1},{"c":{"$ne": "123"}}],
+	"c": {"$in": ["1", "2", "3"]},
+	"$and": [{"a.c": 100.001}, {"d": {"$regex": "go|home"}}]
 }
 
 ```
 
-You can use it as a rule engine for condition check, normally the Cond is a config data from configure file OR DB OR API query.  
+You can use it as a rule engine for condition check (run conditon check over the runtime data). Normally the Cond is a config data from config file or DB or API query.    
+
+Supports operators now:  
+|operators    |dsc          |
+| ----------- | ----------- | 
+|$eq          | eg: {"a": 123}, {"a": {"$eq": 123}} |
+$ne
+$gt
+$gte
+$lt
+$lte
+$and
+$or
+$in
+$nin
+$regex
+$contain
 
 **How to use?**  
 
