@@ -19,15 +19,17 @@ import (
 type Cond map[string]interface{}
 
 type State struct {
-	Ctx                context.Context
-	Cond               Cond
-	NestedKeySplitMark string
+	Ctx                 context.Context
+	Cond                Cond
+	NestedKeySplitMark  string
+	RuntimeVariableMark string
 }
 
 func NewState() *State {
 	return &State{
-		Ctx:                context.Background(),
-		NestedKeySplitMark: ".",
+		Ctx:                 context.Background(),
+		NestedKeySplitMark:  ".",
+		RuntimeVariableMark: "&",
 	}
 }
 
@@ -82,4 +84,17 @@ func (s *State) loadValFromSession(k string, reg map[string]interface{}) interfa
 		}
 	}
 	return nil
+}
+
+func (s *State) loadVarible(r interface{}, reg map[string]interface{}) interface{} {
+	str, ok := r.(string)
+	if !ok {
+		return r
+	}
+	if strings.HasPrefix(str, s.RuntimeVariableMark) {
+		str = strings.TrimPrefix(str, s.RuntimeVariableMark)
+	} else {
+		return r
+	}
+	return s.loadValFromSession(str, reg)
 }

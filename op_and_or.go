@@ -12,7 +12,7 @@ func opAndFunc(s *State, l string, op Operator, r interface{}, reg map[string]in
 	if reflect.TypeOf(r).Kind() != reflect.Slice {
 		panic("right value of OP $and  must be slice type")
 	}
-	if subCond, ok := r.([]map[string]interface{}); ok {
+	if subCond, ok := r.([]Cond); ok {
 		for _, v := range subCond {
 			if !opMainFunc(s, "", "", v, reg) {
 				return false
@@ -27,7 +27,7 @@ func opOrFunc(s *State, l string, op Operator, r interface{}, reg map[string]int
 	if reflect.TypeOf(r).Kind() != reflect.Slice {
 		panic("right value of OP $or  must be slice type")
 	}
-	if subCond, ok := r.([]map[string]interface{}); ok {
+	if subCond, ok := r.([]Cond); ok {
 		for _, v := range subCond {
 			if opMainFunc(s, "", "", v, reg) {
 				return true

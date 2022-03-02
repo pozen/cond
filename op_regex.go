@@ -6,7 +6,9 @@ import (
 
 const opRegex Operator = "$regex"
 
-func opRegexFunc(s *State, l string, op Operator, r interface{}, reg map[string]interface{}) bool {
+func opRegexFunc(s *State, l string, op Operator, r1 interface{}, reg map[string]interface{}) bool {
+
+	r := s.loadVarible(r1, reg)
 
 	regexStr, ok := r.(string)
 	if !ok {

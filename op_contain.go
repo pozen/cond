@@ -12,7 +12,7 @@ func opContainFunc(s *State, l string, op Operator, r interface{}, reg map[strin
 		return false
 	}
 
-	rType := reflect.TypeOf(r)
+	//rType := reflect.TypeOf(r)
 	lType := reflect.TypeOf(lVal)
 
 	if lType.Kind() != reflect.Slice {
@@ -25,16 +25,16 @@ func opContainFunc(s *State, l string, op Operator, r interface{}, reg map[strin
 		panic("$contain: type of left value can not be []interface{}")
 	}
 
-	if getValType(rType.Kind()) != getValType(lElementType.Kind()) {
-		panic("$contain: type mismatch between left value & right value")
-	}
+	//if getValType(rType.Kind()) != getValType(lElementType.Kind()) {
+	//	panic("$contain: type mismatch between left value & right value")
+	//}
 
 	lValue := reflect.ValueOf(lVal)
 
 	for i := 0; i < lValue.Len(); i++ {
 		lrIndex := lValue.Index(i).Interface()
 
-		if compareValue(s, opEQ, r, lrIndex) {
+		if compareValue(s, opEQ, r, lrIndex, reg) {
 			return true
 		}
 	}

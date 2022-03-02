@@ -13,24 +13,24 @@ func opInfunc(s *State, l string, op Operator, r interface{}, reg map[string]int
 	if rType.Kind() != reflect.Slice {
 		panic("$in: right value must be slice")
 	}
-	rElemType := rType.Elem()
+	//rElemType := rType.Elem()
 
 	lval := s.loadValFromSession(l, reg)
 	if lval == nil {
 		return false
 	}
 
-	lType := reflect.TypeOf(lval)
+	//lType := reflect.TypeOf(lval)
 
 	//hasInterfaceList := false
 
-	if rElemType.Kind() == reflect.Interface {
-		//hasInterfaceList = true
-	}
+	//if rElemType.Kind() == reflect.Interface {
+	//hasInterfaceList = true
+	//}
 
-	if /*!hasInterfaceList &&*/ getValType(rElemType.Kind()) != getValType(lType.Kind()) {
-		panic("$in: type mismatch")
-	}
+	//if /*!hasInterfaceList &&*/ getValType(rElemType.Kind()) != getValType(lType.Kind()) {
+	//	panic("$in: type mismatch")
+	//}
 
 	rValue := reflect.ValueOf(r)
 
@@ -39,7 +39,7 @@ func opInfunc(s *State, l string, op Operator, r interface{}, reg map[string]int
 
 		// same type list to type item, just compare value
 		//if !hasInterfaceList {
-		if compareValue(s, opEQ, lval, rIndex) {
+		if compareValue(s, opEQ, lval, rIndex, reg) {
 			return true
 		}
 		//}
@@ -53,24 +53,24 @@ func opNinfunc(s *State, l string, op Operator, r interface{}, reg map[string]in
 	if rType.Kind() != reflect.Slice {
 		panic("$nin: right value must be slice")
 	}
-	rElemType := rType.Elem()
+	//rElemType := rType.Elem()
 
 	lval := s.loadValFromSession(l, reg)
 	if lval == nil {
 		return false
 	}
 
-	lType := reflect.TypeOf(lval)
+	//lType := reflect.TypeOf(lval)
 
 	//hasInterfaceList := false
 
-	if rElemType.Kind() == reflect.Interface {
-		//hasInterfaceList = true
-	}
+	//if rElemType.Kind() == reflect.Interface {
+	//hasInterfaceList = true
+	//}
 
-	if /*!hasInterfaceList &&*/ getValType(rElemType.Kind()) != getValType(lType.Kind()) {
-		panic("$nin: type mismatch")
-	}
+	//if /*!hasInterfaceList &&*/ getValType(rElemType.Kind()) != getValType(lType.Kind()) {
+	//	panic("$nin: type mismatch")
+	//}
 
 	rValue := reflect.ValueOf(r)
 
@@ -79,7 +79,7 @@ func opNinfunc(s *State, l string, op Operator, r interface{}, reg map[string]in
 
 		// same type list to type item, just compare value
 		//if !hasInterfaceList {
-		if compareValue(s, opEQ, lval, rIndex) {
+		if compareValue(s, opEQ, lval, rIndex, reg) {
 			return false
 		}
 		//}

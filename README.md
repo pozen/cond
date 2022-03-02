@@ -64,6 +64,17 @@ func main() {
 	// reset cond & check
 	check_result = s.SetCond(c2).Exec(&val_to_check2)
 	fmt.Printf("regex check_result is: %v\n", check_result)
+
+	// example4: varible
+	val_to_check = map[string]interface{}{
+		"key1": 123,
+		"key2": 200,
+	}
+	c3 := cond.Cond{
+		"key1": cond.Cond{"$lt": "&key2"},
+	}
+	check_result = s.SetCond(c3).Exec(val_to_check)
+	fmt.Printf("variable check_result is: %v\n", check_result)
 }
 
 ```

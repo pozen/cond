@@ -39,7 +39,7 @@ func opCompareFunc(s *State, l string, op Operator, r interface{}, reg map[strin
 	switch reflect.TypeOf(lval).Kind() {
 	case reflect.Float32, reflect.Float64, reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64,
 		reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Bool, reflect.String:
-		return compareValue(s, op, lval, r)
+		return compareValue(s, op, lval, r, reg)
 	default:
 		panic("not comparable type : " + reflect.TypeOf(lval).Kind().String())
 	}
@@ -98,7 +98,10 @@ func getDecimalValue(i interface{}) decimal.Decimal {
 	return decimal.New(0, 0)
 }
 
-func compareValue(s *State, op Operator, i1 interface{}, i2 interface{}) bool {
+func compareValue(s *State, op Operator, i1 interface{}, ir interface{}, reg map[string]interface{}) bool {
+
+	i2 := s.loadVarible(ir, reg)
+
 	if getValType(reflect.TypeOf(i1).Kind()) != getValType(reflect.TypeOf(i2).Kind()) {
 		return false
 	}
