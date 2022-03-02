@@ -13,6 +13,8 @@ eg:
 
 ```
 
+(You can find more examples in unit test file: cond_test.go)
+
 You can use it as a rule engine for condition check (run conditon check over the runtime data). Normally the Cond is a config data from config file or DB or API query.    
 
 Supports operators now:  
