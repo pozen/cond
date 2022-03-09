@@ -1,15 +1,26 @@
 package cond
 
+type TokenType int64
+
+const (
+	TokenTypeNum    TokenType = 1
+	TokenTypeString TokenType = 2
+	TokenTypeOP     TokenType = 3
+)
+
 type Token struct {
-	Val string
-	OP  *ExprOperator
+	Val  string
+	OP   *ExprOperator
+	Type TokenType
 }
 
-func idLegalAssert(c rune) {
+func tokenLegalAssert(c rune) {
 	if c >= rune('0') && c <= rune('9') ||
 		c >= rune('a') && c <= rune('z') ||
 		c >= rune('A') && c <= rune('Z') ||
-		c == rune('_') {
+		c == rune('_') ||
+		c == rune('$') ||
+		c == rune('&') {
 		return
 	}
 	panic("expr id is invalid, contains iilegal rune : " + string(c))
@@ -36,7 +47,7 @@ func genToken(src string) []Token {
 			tokens = append(tokens, Token{Val: string(v), OP: op})
 			continue
 		}
-		idLegalAssert(v)
+		tokenLegalAssert(v)
 		id = id + string(v)
 	}
 	return tokens
