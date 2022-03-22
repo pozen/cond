@@ -21,17 +21,17 @@ Supports operators now:
 |operators    |dsc          |
 | ----------- | ----------- | 
 |$eq          | eg: {"a": 123}, {"a": {"$eq": 123}} |
-$ne
-$gt
-$gte
-$lt
-$lte
-$and
-$or
-$in
-$nin
-$regex
-$contain
+|$ne          | {"a": {"$ne": 123}} |
+|$gt          | {"a": {"$gt": 123}} |
+|$gte          | {"a": {"$gte": 123}} |
+|$lt          | {"a": {"$lt": 123}} |
+|$lte          | {"a": {"$lte": 123}} |
+|$and          | {"$and": [{"a": 123}, {"b": 125}]} |
+|$or          | {"$or": [{"a": 123}, {"b": 125}]} |
+|$in          | {"a": {"$in": [1,2,3,4,5]} |
+|$nin          | {"b": {"$nin": [1,2,3,4,5]} |
+|$regex          | {"a": "$regex": "hello|go"} |
+|$contain          | {"a": {"$contain": "abc"}} |
 
 **How to use?**  
 
